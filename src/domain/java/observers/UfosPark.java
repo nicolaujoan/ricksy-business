@@ -16,8 +16,7 @@ public class UfosPark implements GuestDispatcher {
     public void dispatch(CreditCard creditCard) {
         if(!this.containsCard(creditCard.number())) {
                 for (Map.Entry<String, String> entry : flota.entrySet()) {
-                    if (entry.getValue().equals("")) {
-                        creditCard.pay(UFO_FEE);
+                    if (entry.getValue().equals("") && creditCard.pay(UFO_FEE)) {
                         entry.setValue(creditCard.number());
                         break;
                     }
@@ -44,11 +43,6 @@ public class UfosPark implements GuestDispatcher {
     public Collection<String> cardNumbers() {
         return flota.values();
     }
-
-    // need 2 additional methods: containsCard(), cardNumbers()
-    // don't understand the purpose of cardNumbers() and think containsCard() makes more sense if
-    // it is private.
-    // ask about having null values of better if empty string
 
     @Override
     public String toString() {

@@ -2,7 +2,7 @@ package observers;
 
 import payments.CreditCard;
 
-public class CrystalExpender {
+public class CrystalExpender implements GuestDispatcher {
     private int stock;
     private final double CRYSTAL_PRICE;
 
@@ -11,6 +11,7 @@ public class CrystalExpender {
         this.CRYSTAL_PRICE = itemCost;
     }
 
+    @Override
     public void dispatch(CreditCard creditCard) {
         if (stockAvailable()) {
             if (creditCard.pay(CRYSTAL_PRICE)) {
